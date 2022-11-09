@@ -32,12 +32,87 @@ Function of Gram Panchayet member:
 
 Daywise plan
 
-Day1-Finalizing the tables and their relationships for the project
+Day1-Finalizing the tables and their relationships for the project (DONE)
 Day2-Finalizing the Bean classes and DTO classes
 Day3-Finalizing the JDBC dependencies and DAO interface methdos
 Day4-Implementation of DAO methods
 Day5-Implementation of the Presentation part
 Day6-Final Presentation
+
+Resources:
+
+Autoincrement with prefix: https://fedingo.com/how-to-auto-increment-with-prefix-as-primary-key-in-mysql/
+
+
+Day 1
+
+Table of bdo database:
+
+bdoName 
+bdoID(unique, auto increment BDOnum) 
+username(unique) 
+password(unique)
+----------------------
+
+Table of projects
+
+proName 
+proID(unique, auto increment PROnum) 
+totalCost 
+balanceCost 
+wagePerEmp 
+employeeRequired 
+dateOfStart 
+dateOfEnd 
+status(not start, WIP, Finished)
+----------------------
+
+Table of GramPanchaytMember
+
+gpmName 
+gpmID(unique, auto increment GPMnum) 
+bdoSupervise(bdoID given auto from whose account created) 
+username(unique) 
+password(unique) 
+proID(alloted by BDO)
+----------
+
+Table of Employee
+
+empName 
+empID(unique, auto incement EMPnum) 
+gpmSuper(gpmID given auto from whose accont created) 
+status(emp or unemp show proWorking by default UnEployeed can be change to Employeed) 
+proWorking(id of project by default null) 
+wage(Auto from the project alloted by default null) 
+
+Day2
+
+Bean classes and field required
+
+BDObean 
+String name;
+String username;
+String password;
+
+PROJECTbean
+String proName;
+int totalCost;
+int employeeRequired;
+String dateOfStrat;
+String dateOfEnd;
+String status;
+
+GPMbean
+String gpmName;
+int bdoSupervise;
+String username;
+String password;
+int proID;
+
+EMPLOYEEbean
+String empName;
+String status;
 
 
 
