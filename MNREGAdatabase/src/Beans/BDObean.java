@@ -2,15 +2,25 @@ package Beans;
 
 public class BDObean {
 
+	String bdoID;
 	String name;
 	String username;
 	String password;
 	
-	public BDObean(String name, String username, String password) {
+	public BDObean(String bdoID, String name, String username, String password) {
 		super();
+		this.bdoID = bdoID;
 		this.name = name;
 		this.username = username;
 		this.password = password;
+	}
+
+	public String getBdoID() {
+		return bdoID;
+	}
+
+	public void setBdoID(String bdoID) {
+		this.bdoID = bdoID;
 	}
 
 	public String getName() {
@@ -39,8 +49,7 @@ public class BDObean {
 
 	@Override
 	public String toString() {
-		return "BDObean [name=" + name + ", username=" + username + ", password=" + password + "]";
+		return "BDObean [bdoID=" + bdoID + ", name=" + name + ", username=" + username + ", password=" + password + "]";
 	}
-	 
 	
 }

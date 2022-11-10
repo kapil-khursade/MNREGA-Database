@@ -14,18 +14,18 @@ A project is created by BDO. Project is where people are assigned to. Before ass
 to a project(done by Gram Panchayat member) his/her data must be inserted into the system.
 
 Functions of BDO:
-1. Login into their account.
-2. Create a project.
-3. View List Of Project.
-4. Create new Gram Panchayat Member(GPM).
-5. View all the GPM.
-6. Allocate  Project to GPM
+1. Login into their account.(DONE)
+2. Create a project.(DONE)
+3. View List Of Project.(DONE)
+4. Create new Gram Panchayat Member(GPM).(DONE)
+5. View all the GPM.(DONE)
+6. Allocate  Project to GPM(DONE)
 7. See List of Employee working on that Project and their wages.
 
 Function of Gram Panchayet member:
-1. Login into their Account.
-2. Create Employee.
-3. View the Details of Employee.
+1. Login into their Account.(DONE)
+2. Create Employee.(DONE)
+3. View the Details of Employee.(DONE)
 4. Assign Employee to a Project.
 5. View total number of days Employee worked in a project and also their wages.
 
@@ -33,7 +33,7 @@ Function of Gram Panchayet member:
 Daywise plan
 
 Day1-Finalizing the tables and their relationships for the project (DONE)
-Day2-Finalizing the Bean classes and DTO classes
+Day2-Finalizing the Bean classes and DTO classes(DONE)
 Day3-Finalizing the JDBC dependencies and DAO interface methdos
 Day4-Implementation of DAO methods
 Day5-Implementation of the Presentation part
@@ -43,21 +43,23 @@ Resources:
 
 Autoincrement with prefix: https://fedingo.com/how-to-auto-increment-with-prefix-as-primary-key-in-mysql/
 
+Joining tables: https://www.youtube.com/watch?v=k3wRFsnYq6A
+
 
 Day 1
 
 Table of bdo database:
 
-bdoName 
-bdoID(unique, auto increment BDOnum) 
-username(unique) 
+bdoID(unique, auto increment BDOnum)
+bdoName varchar(20) 
+bdoUsername(unique) 
 password(unique)
 ----------------------
 
 Table of projects
 
-proName 
 proID(unique, auto increment PROnum) 
+proName 
 totalCost 
 balanceCost 
 wagePerEmp 
@@ -69,20 +71,20 @@ status(not start, WIP, Finished)
 
 Table of GramPanchaytMember
 
-gpmName 
 gpmID(unique, auto increment GPMnum) 
-bdoSupervise(bdoID given auto from whose account created) 
+gpmName 
 username(unique) 
 password(unique) 
+bdoSupervise(bdoID given auto from whose account created) 
 proID(alloted by BDO)
 ----------
 
 Table of Employee
 
-empName 
 empID(unique, auto incement EMPnum) 
-gpmSuper(gpmID given auto from whose accont created) 
+empName 
 status(emp or unemp show proWorking by default UnEployeed can be change to Employeed) 
+gpmSuper(gpmID given auto from whose accont created) 
 proWorking(id of project by default null) 
 wage(Auto from the project alloted by default null) 
 
@@ -108,7 +110,6 @@ String gpmName;
 int bdoSupervise;
 String username;
 String password;
-int proID;
 
 EMPLOYEEbean
 String empName;

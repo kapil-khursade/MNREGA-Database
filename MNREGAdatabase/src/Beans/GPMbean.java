@@ -2,17 +2,30 @@ package Beans;
 
 public class GPMbean {
 
+	String gpmID;
 	String gpmName;
-	int bdoSupervise;
-	String username;
-	String password;
-	
-	public GPMbean(String gpmName, int bdoSupervise, String username, String password) {
+	String gpmUsername;
+	String gpmPassword;
+	String bdoSupervise;
+    String pojAllot;
+    
+	public GPMbean(String gpmID, String gpmName, String gpmUsername, String gpmPassword, String bdoSupervise,
+			String pojAllot) {
 		super();
+		this.gpmID = gpmID;
 		this.gpmName = gpmName;
+		this.gpmUsername = gpmUsername;
+		this.gpmPassword = gpmPassword;
 		this.bdoSupervise = bdoSupervise;
-		this.username = username;
-		this.password = password;
+		this.pojAllot = pojAllot;
+	}
+
+	public String getGpmID() {
+		return gpmID;
+	}
+
+	public void setGpmID(String gpmID) {
+		this.gpmID = gpmID;
 	}
 
 	public String getGpmName() {
@@ -23,34 +36,43 @@ public class GPMbean {
 		this.gpmName = gpmName;
 	}
 
-	public int getBdoSupervise() {
+	public String getGpmUsername() {
+		return gpmUsername;
+	}
+
+	public void setGpmUsername(String gpmUsername) {
+		this.gpmUsername = gpmUsername;
+	}
+
+	public String getGpmPassword() {
+		return gpmPassword;
+	}
+
+	public void setGpmPassword(String gpmPassword) {
+		this.gpmPassword = gpmPassword;
+	}
+
+	public String getBdoSupervise() {
 		return bdoSupervise;
 	}
 
-	public void setBdoSupervise(int bdoSupervise) {
+	public void setBdoSupervise(String bdoSupervise) {
 		this.bdoSupervise = bdoSupervise;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getPojAllot() {
+		return pojAllot;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPojAllot(String pojAllot) {
+		this.pojAllot = pojAllot;
 	}
 
 	@Override
 	public String toString() {
-		return "GPMbean [gpmName=" + gpmName + ", bdoSupervise=" + bdoSupervise + ", username=" + username
-				+ ", password=" + password + "]";
+		return "GPMbean [gpmID=" + gpmID + ", gpmName=" + gpmName + ", gpmUsername=" + gpmUsername + ", gpmPassword="
+				+ gpmPassword + ", bdoSupervise=" + bdoSupervise + ", pojAllot=" + pojAllot + "]";
 	}
-
+    
+    
 }

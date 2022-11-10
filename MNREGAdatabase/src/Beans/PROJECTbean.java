@@ -1,23 +1,39 @@
 package Beans;
 
+import java.sql.Date;
+
 public class PROJECTbean {
 
+	String proID;
 	String proName;
 	int totalCost;
+	int balanceCost;
+	int wagePerEmp;
 	int employeeRequired;
-	String dateOfStrat;
-	String dateOfEnd;
+	Date dateOfStrat;
+	Date dateOfEnd;
 	String status;
 	
-	public PROJECTbean(String proName, int totalCost, int employeeRequired, String dateOfStrat, String dateOfEnd,
-			String status) {
+	public PROJECTbean(String proID, String proName, int totalCost, int balanceCost, int wagePerEmp,
+			int employeeRequired, Date dateOfStrat, Date dateOfEnd, String status) {
 		super();
+		this.proID = proID;
 		this.proName = proName;
 		this.totalCost = totalCost;
+		this.balanceCost = balanceCost;
+		this.wagePerEmp = wagePerEmp;
 		this.employeeRequired = employeeRequired;
 		this.dateOfStrat = dateOfStrat;
 		this.dateOfEnd = dateOfEnd;
 		this.status = status;
+	}
+
+	public String getProID() {
+		return proID;
+	}
+
+	public void setProID(String proID) {
+		this.proID = proID;
 	}
 
 	public String getProName() {
@@ -36,6 +52,22 @@ public class PROJECTbean {
 		this.totalCost = totalCost;
 	}
 
+	public int getBalanceCost() {
+		return balanceCost;
+	}
+
+	public void setBalanceCost(int balanceCost) {
+		this.balanceCost = balanceCost;
+	}
+
+	public int getWagePerEmp() {
+		return wagePerEmp;
+	}
+
+	public void setWagePerEmp(int wagePerEmp) {
+		this.wagePerEmp = wagePerEmp;
+	}
+
 	public int getEmployeeRequired() {
 		return employeeRequired;
 	}
@@ -44,19 +76,19 @@ public class PROJECTbean {
 		this.employeeRequired = employeeRequired;
 	}
 
-	public String getDateOfStrat() {
+	public Date getDateOfStrat() {
 		return dateOfStrat;
 	}
 
-	public void setDateOfStrat(String dateOfStrat) {
+	public void setDateOfStrat(Date dateOfStrat) {
 		this.dateOfStrat = dateOfStrat;
 	}
 
-	public String getDateOfEnd() {
+	public Date getDateOfEnd() {
 		return dateOfEnd;
 	}
 
-	public void setDateOfEnd(String dateOfEnd) {
+	public void setDateOfEnd(Date dateOfEnd) {
 		this.dateOfEnd = dateOfEnd;
 	}
 
@@ -70,9 +102,11 @@ public class PROJECTbean {
 
 	@Override
 	public String toString() {
-		return "PROJECTbean [proName=" + proName + ", totalCost=" + totalCost + ", employeeRequired=" + employeeRequired
+		return "PROJECTbean [proID=" + proID + ", proName=" + proName + ", totalCost=" + totalCost + ", balanceCost="
+				+ balanceCost + ", wagePerEmp=" + wagePerEmp + ", employeeRequired=" + employeeRequired
 				+ ", dateOfStrat=" + dateOfStrat + ", dateOfEnd=" + dateOfEnd + ", status=" + status + "]";
 	}
 	
+
 	
 }

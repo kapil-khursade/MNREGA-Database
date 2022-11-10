@@ -29,4 +29,8 @@ public class dsahBoard {
 	    	accessAs();
 	    }
 	}
+	
+	public void accescAsFunBDO() {
+		
+	}
 }
