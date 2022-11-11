@@ -10,12 +10,12 @@ public class PROJECTbean {
 	int balanceCost;
 	int wagePerEmp;
 	int employeeRequired;
-	Date dateOfStrat;
-	Date dateOfEnd;
+	String dateOfStrat;
+	String dateOfEnd;
 	String status;
 	
 	public PROJECTbean(String proID, String proName, int totalCost, int balanceCost, int wagePerEmp,
-			int employeeRequired, Date dateOfStrat, Date dateOfEnd, String status) {
+			int employeeRequired, String dateOfStrat, String dateOfEnd, String status) {
 		super();
 		this.proID = proID;
 		this.proName = proName;
@@ -76,19 +76,19 @@ public class PROJECTbean {
 		this.employeeRequired = employeeRequired;
 	}
 
-	public Date getDateOfStrat() {
+	public String getDateOfStrat() {
 		return dateOfStrat;
 	}
 
-	public void setDateOfStrat(Date dateOfStrat) {
+	public void setDateOfStrat(String dateOfStrat) {
 		this.dateOfStrat = dateOfStrat;
 	}
 
-	public Date getDateOfEnd() {
+	public String getDateOfEnd() {
 		return dateOfEnd;
 	}
 
-	public void setDateOfEnd(Date dateOfEnd) {
+	public void setDateOfEnd(String dateOfEnd) {
 		this.dateOfEnd = dateOfEnd;
 	}
 

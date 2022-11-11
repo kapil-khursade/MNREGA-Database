@@ -13,7 +13,7 @@ public class functionsdbo {
 
 	public static Scanner sc = new Scanner(System.in);
 	
-//	public static void main(String[] args) {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
 //for insertin bdo
@@ -50,15 +50,12 @@ public class functionsdbo {
 //		System.out.println("Enter Project No of Empployee Required");
 //		int empReq = sc.nextInt();
 //		System.out.println("Enter Project Date Of Start in YYYY-MM-DD");
-//		long dos = sc.nextLong();
-//		Date doss = new Date(dos);
+//		String dos = sc.next();
 //		System.out.println("Enter Project Date Of End in YYYY-MM-DD");
-//		long doe = sc.nextLong();
-//		Date does = new Date(doe);
-//		
-//		PROJECTbean pro1 = new PROJECTbean(null, nam, cost, cost, wage, empReq, doss, does, null);	
+//		String doe = sc.next();
 //
-//		createProject(pro1);
+//		PROJECTbean pro = new PROJECTbean(doe, nam, cost, cost, wage, empReq, dos, doe, null);
+//        createProject(pro);
 		
 //Viewing project list
 //		System.out.println(viewProjectList());
@@ -85,11 +82,15 @@ public class functionsdbo {
 		
 //Allocating project
 //		projAandGpm();
-//	}
+		
+//Viewing employe and working employee on that project
+//		showproOption();
+		
+	}
 	
 //inserting the bdo account
 	public static void insertBDO(BDObean bdo1) {
-		
+		int out = 0;
 		try (Connection conn = DButil.getConnection()){
 			
 			PreparedStatement inBDO = conn.prepareStatement("INSERT INTO bdoDB(bdoName, bdoUsername, bdoPassword) VALUES(?, ?, ?)");
@@ -98,7 +99,7 @@ public class functionsdbo {
 			inBDO.setString(2, bdo1.getUsername());
 			inBDO.setString(3, bdo1.getPassword());
 			
-			int out = inBDO.executeUpdate();
+			out = inBDO.executeUpdate();
 			
 			if(out>0)System.out.println("NEW Block Development Officer Account Crated");
 			
@@ -107,10 +108,13 @@ public class functionsdbo {
 //			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
+
 	}
 	
 //Login into the bdo account
-	public static void loginBDO(String user, String pass) {
+	public static boolean loginBDO(String user, String pass) {
+		
+		boolean flag = false;
 		
 		try(Connection conn = DButil.getConnection()) {
 			
@@ -124,6 +128,7 @@ public class functionsdbo {
 				String bdoName = bdoAcc.getNString("bdoName");
 				System.out.println("\n"+"Log in Sucessfull "+bdoName);
 				System.out.println("Your account ID is "+bdoID);
+				flag = true;
 			}else {
 				System.out.println("Invalid Username Or Password");
 			}
@@ -133,6 +138,8 @@ public class functionsdbo {
 //			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
+		
+		return flag;
 	}
 	
 	
@@ -149,8 +156,8 @@ public class functionsdbo {
 			crtPro.setInt(3, pro1.getTotalCost());
 			crtPro.setInt(4, pro1.getWagePerEmp());
 			crtPro.setInt(5, pro1.getEmployeeRequired());
-			crtPro.setDate(6, pro1.getDateOfStrat());
-			crtPro.setDate(7, pro1.getDateOfEnd());
+			crtPro.setString(6, pro1.getDateOfStrat());
+			crtPro.setString(7, pro1.getDateOfEnd());
 			
 		    int out	 = crtPro.executeUpdate();
 		    
@@ -191,7 +198,7 @@ public class functionsdbo {
                 Date doe = proj.getDate("dateOfEnd");
                 String status = proj.getString("status");
 				
-                PROJECTbean pro = new PROJECTbean(proID, name, cost, cost, wag, empReq, dos, doe, status);
+                PROJECTbean pro = new PROJECTbean(proID, name, cost, cost, wag, empReq, proID, name, status);
                 
                 proList.add(pro);
 			}
@@ -211,11 +218,12 @@ public class functionsdbo {
 		
 		try(Connection conn = DButil.getConnection()) {
 			
-			PreparedStatement inGPM = conn.prepareStatement("INSERT INTO gpmDB(gpmName, gpmUsername, gpmPassword) VALUES(?, ?, ?)");
+			PreparedStatement inGPM = conn.prepareStatement("INSERT INTO gpmDB(gpmName, gpmUsername, gpmPassword, bdoSupervise) VALUES(?, ?, ?, ?)");
 			
 			inGPM.setString(1, gpm1.getGpmName());
 			inGPM.setString(2, gpm1.getGpmUsername());
 			inGPM.setString(3, gpm1.getGpmPassword());
+			inGPM.setString(4, gpm1.getBdoSupervise());
 			
 			int out = inGPM.executeUpdate();
 			
@@ -318,6 +326,56 @@ public class functionsdbo {
 			// TODO Auto-generated catch block
 //			e.printStackTrace();
 			System.out.println(e.getMessage());
+		}
+	}
+	
+	
+//list of employee working on project and their salary	
+//	options of project
+	public static void showproOption() {
+		
+try(Connection conn = DButil.getConnection()) {
+			
+			System.out.println("This projects are avialbe to allot who have budget and either work in progress or not started.");
+			
+			PreparedStatement proAc = conn.prepareStatement("SELECT proID, proName FROM projectDB");
+			ResultSet proj = proAc.executeQuery();
+			System.out.println("ProjID  ProjName");
+			System.out.println("------------------");
+			while(proj.next()) {
+				System.out.println(proj.getString(1)+"  "+proj.getString(2));
+			}
+
+			System.out.println("\n"+"Enter the Project Id");
+			String proCurr = sc.next();
+			listOfempProSal(proCurr);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+//			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	
+	public static void listOfempProSal(String proCurr) {
+		try(Connection conn = DButil.getConnection()) {
+			
+	System.out.println("\n"+"This projects are avialbe to allot who have budget and either work in progress or not started.");
+			
+			PreparedStatement proAc =
+			conn.prepareStatement(" SELECT employeeDB.empID, employeeDB.empName, employeeDB.wageEarned  FROM employeeDB CROSS JOIN projectDB WHERE projectDB.proID=employeeDB.proWorking AND projectDB.proID=?");
+			proAc.setString(1, proCurr);
+			ResultSet proj = proAc.executeQuery();
+			System.out.println("Following are the employee working on project id "+proCurr+"\n");
+			System.out.println("EmpID  empName   wageEarned");
+			System.out.println("-----------------------------");
+			while(proj.next()) {
+				System.out.println(proj.getString(1)+"  "+proj.getString(2)+"  "+proj.getString(3));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
