@@ -11,47 +11,6 @@ import Beans.EMPLOYEEbean;
 public class functionsOfGPM {
 	
 	public static Scanner sc = new Scanner(System.in);
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-//Login into Gram Panchyat Member account
-//		System.out.println("Login into the Gram Panchyat Member portal");
-//		System.out.println("Enter Username");
-//		String user = sc.next();
-//		System.out.println("Enter Password");
-//		String pass = sc.next();
-//		
-//		loginGPM(user, pass);
-		
-		
-//Creating the new employee
-//		System.out.println("Adding the new employee");
-//		System.out.println("Enter the name of employee");
-//		String name = sc.next();
-//		
-//		EMPLOYEEbean emp1 = new EMPLOYEEbean(null, name, null, 0, 0, null, null);
-//		createEmployee(emp1);
-		
-//View the list of employee
-//		System.out.println("Employees List");
-//		List<EMPLOYEEbean> empList =viewEmployeeList();
-//		
-//		for (EMPLOYEEbean employeEbean : empList) {
-//			System.out.println(employeEbean);
-//		}
-		
-//Assign project to employee;	
-//		list of project available
-//		aviaProjAndEmp();
-		
-		
-//Viewing the employee list and days of works
-//		showproOption();
-		
-	}
-	
-
 
 //Login into gram pamchayat member
 	public static boolean loginGPM(String user, String pass) {

@@ -118,4 +118,8 @@ INSERT INTO gpmDB(gpmName, gpmUsername, gpmPassword) VALUES(?, ?, ?)
 
 UPDATE gpmDB SET proAllot='PRO003'WHERE gpmID='GPM004';
 
+Updating the project when new employee is added.
+
+UPDATE projectDB SET balanceCost=(balanceCost-wagePerEmp), employeeRequired=employeeRequired-1 WHERE proID='PRO002';
+
                                  

@@ -70,8 +70,13 @@ public class GPMbean {
 
 	@Override
 	public String toString() {
-		return "GPMbean [gpmID=" + gpmID + ", gpmName=" + gpmName + ", gpmUsername=" + gpmUsername + ", gpmPassword="
-				+ gpmPassword + ", bdoSupervise=" + bdoSupervise + ", pojAllot=" + pojAllot + "]";
+		return "gpmID: " + gpmID + "\n" +
+				"gpmName: " + gpmName +  "\n" +
+				"gpmUsername: " + gpmUsername +  "\n" +
+				"gpmPassword: "+ gpmPassword +  "\n" +
+				"bdoSupervise: " + bdoSupervise +  "\n" +
+				"pojAllot: " + pojAllot +  "\n" +
+				"--------------------------------------";
 	}
     
     

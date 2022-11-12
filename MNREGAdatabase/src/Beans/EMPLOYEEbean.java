@@ -80,9 +80,14 @@ public class EMPLOYEEbean {
 
 	@Override
 	public String toString() {
-		return "EMPLOYEEbean [empID=" + empID + ", empName=" + empName + ", status=" + status + ", wageEarned="
-				+ wageEarned + ", numOfDaysWork=" + numOfDaysWork + ", gpmSupervise=" + gpmSupervise + ", proWorking="
-				+ proWorking + "]";
+		return "empID: " + empID +"\n"+ 
+	           "empName: " + empName +"\n"+ 
+			   "status: " + status +"\n"+
+			   "wageEarned: "+ wageEarned + "\n"+
+			   "numOfDaysWork: " + numOfDaysWork +"\n"+ 
+			   "gpmSupervise: " + gpmSupervise + "\n"+
+			   "proWorking: "+ proWorking+"\n"+
+			    "--------------------------------------------";
 	}
 		
 }

@@ -13,81 +13,6 @@ public class functionsdbo {
 
 	public static Scanner sc = new Scanner(System.in);
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-//for insertin bdo
-//		System.out.println("Inserting BDO");
-//		
-//		System.out.println("Enter BDO name");
-//		String nam = sc.next();
-//		System.out.println("Enter BDO username");
-//		String user = sc.next();
-//		System.out.println("Enter BDO password");
-//		String pass = sc.next();
-//		
-//		BDObean bdo1 = new BDObean(null, nam, user, pass);
-//		
-//		insertBDO(bdo1);
-
-		
-//for loging in bdo account
-//      System.out.println("BDO LOGIN PORTAL");
-//      System.out.println("ENTER YOUR USERNAME");
-//      String user = sc.next();
-//      System.out.println("ENTER YOUR PASSWORD");
-//      String pass = sc.next();
-//      loginBDO(user, pass);
-		
-//for creating project
-//		System.out.println("Create Project");
-//		System.out.println("Enter Project Name");
-//		String nam = sc.next();
-//		System.out.println("Enter Project total cost");
-//		int cost = sc.nextInt();
-//		System.out.println("Enter Project Wage Per Empployee");
-//		int wage = sc.nextInt();
-//		System.out.println("Enter Project No of Empployee Required");
-//		int empReq = sc.nextInt();
-//		System.out.println("Enter Project Date Of Start in YYYY-MM-DD");
-//		String dos = sc.next();
-//		System.out.println("Enter Project Date Of End in YYYY-MM-DD");
-//		String doe = sc.next();
-//
-//		PROJECTbean pro = new PROJECTbean(doe, nam, cost, cost, wage, empReq, dos, doe, null);
-//        createProject(pro);
-		
-//Viewing project list
-//		System.out.println(viewProjectList());
-		
-//Adding new Gramp Pancayat member
-//		System.out.println("Creating new Gram Pancahyat Memeber Account");
-//		System.out.println("Enter Name");
-//		String name = sc.next();
-//		System.out.println("Enter Username");
-//		String user = sc.next();
-//		System.out.println("Enter Password");
-//		String pass = sc.next();
-//	
-//		GPMbean gpm1 = new GPMbean(null, name, user, pass, null, null);
-//		insertGPM(gpm1);
-		
-//viewing list of gpm
-		
-//		List<GPMbean> gpmList = viewGPMList();
-//		
-//		for (GPMbean gpMbean : gpmList) {
-//			System.out.println(gpMbean);
-//		}
-		
-//Allocating project
-//		projAandGpm();
-		
-//Viewing employe and working employee on that project
-//		showproOption();
-		
-	}
-	
 //inserting the bdo account
 	public static void insertBDO(BDObean bdo1) {
 		int out = 0;
@@ -334,7 +259,7 @@ public class functionsdbo {
 //	options of project
 	public static void showproOption() {
 		
-try(Connection conn = DButil.getConnection()) {
+    try(Connection conn = DButil.getConnection()) {
 			
 			System.out.println("This projects are avialbe to allot who have budget and either work in progress or not started.");
 			

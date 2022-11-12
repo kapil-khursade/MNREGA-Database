@@ -20,22 +20,22 @@ Functions of BDO:
 4. Create new Gram Panchayat Member(GPM).(DONE)
 5. View all the GPM.(DONE)
 6. Allocate  Project to GPM(DONE)
-7. See List of Employee working on that Project and their wages.
+7. See List of Employee working on that Project and their wages.(DONE)
 
 Function of Gram Panchayet member:
 1. Login into their Account.(DONE)
 2. Create Employee.(DONE)
 3. View the Details of Employee.(DONE)
-4. Assign Employee to a Project.
-5. View total number of days Employee worked in a project and also their wages.
+4. Assign Employee to a Project.(DONE)
+5. View total number of days Employee worked in a project and also their wages.(DONE)
 
 
 Daywise plan
 
 Day1-Finalizing the tables and their relationships for the project (DONE)
 Day2-Finalizing the Bean classes and DTO classes(DONE)
-Day3-Finalizing the JDBC dependencies and DAO interface methdos
-Day4-Implementation of DAO methods
+Day3-Finalizing the JDBC dependencies and DAO interface methdos(DONE)
+Day4-Implementation of DAO methods(DONE)
 Day5-Implementation of the Presentation part
 Day6-Final Presentation
 
@@ -116,5 +116,36 @@ String empName;
 String status;
 
 
+Dashboard option will be avialable as follow
+
+Welcome to MNREGA protal
+
+Type 1 to acess as BLOCK DEVELOPMENT OFFICER
+Type 2 to acess as GRAM PANCAYAT MEMBER
+
+Welcome TO BLOCK DEVELOPMENT OFFICERS Portal
+
+Type 1 To Login
+Type 2 To Create BDO account
+
+Login succssn as BDO Wlecome.. your id is
+
+Type 1 to create project
+Type 2 to View the project
+Type 3 to create Gram Panchayat Member
+Type 4 to view Gram Panchayat Member
+Type 5 to Allocate Project To GPM
+Type 6 to To See The Employee Working, wage On Project
+
+
+
+Welcome To Gram Panchayat Member Portal
+
+Type 1 To Login
+
+Type 1 to Create Enployee 
+Type 2 to View List of Employee
+Type 3 to Assign Employee To Project
+Type 4 to View Employee And Number Of Days Worked
 
 

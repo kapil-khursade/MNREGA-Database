@@ -102,9 +102,16 @@ public class PROJECTbean {
 
 	@Override
 	public String toString() {
-		return "PROJECTbean [proID=" + proID + ", proName=" + proName + ", totalCost=" + totalCost + ", balanceCost="
-				+ balanceCost + ", wagePerEmp=" + wagePerEmp + ", employeeRequired=" + employeeRequired
-				+ ", dateOfStrat=" + dateOfStrat + ", dateOfEnd=" + dateOfEnd + ", status=" + status + "]";
+		return "proID: " + proID + "\n" +
+				"proName: " + proName +  "\n" +
+				"totalCost: " + totalCost +  "\n" +
+				"balanceCost: "+ balanceCost +  "\n" +
+				"wagePerEmp: " + wagePerEmp + "\n" + 
+				"employeeRequired: " + employeeRequired + "\n" + 
+				"dateOfStrat: " + dateOfStrat + "\n" + 
+				"dateOfEnd: " + dateOfEnd + "\n" + 
+				"status: " + status + "\n" + 
+				"-------------------------------------------";
 	}
 	
 
