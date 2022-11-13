@@ -29,6 +29,8 @@ public class functionsOfGPM {
 			if(gpm.next()) {
 				System.out.println("\n"+"Welcome Gram Panchayat Member "+gpm.getString("gpmName"));
 				System.out.println("Your ID is "+gpm.getString("gpmID"));
+//login current account				
+				Dashboard.dsahBoard.curGPM = gpm.getString("gpmID");
 				flag = true;
 			}else {
 				System.out.println("Invalide Username OR Password");
@@ -206,18 +208,6 @@ public class functionsOfGPM {
 			int proOut = updateProject.executeUpdate();
 			if(proOut>0)System.out.println("Project database updated updated");
 			else System.out.println("Invalide project"+"\n");
-			
-			
-//			System.out.println("Type 1 to allot another project and 0 to Exit");
-//			int opt = sc.nextInt();
-//			if(opt==1) {
-//				//Assign project to employee;	
-////				list of project available
-//				aviaProjAndEmp("");
-//			}else if(opt==0) {
-//				System.out.println("Done..");
-//			}
-			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

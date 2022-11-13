@@ -34,7 +34,9 @@ CREATE TABLE projectDB (proID VARCHAR(7) NOT NULL PRIMARY KEY DEFAULT '0',
                         employeeRequired int,
                         dateOfStart date,
                         dateOfEnd date,
-                        status ENUM('not_start', 'WIP', 'done') DEFAULT 'not_start');
+                        status ENUM('not_start', 'WIP', 'done') DEFAULT 'not_start',
+                        bdoSupervise VARCHAR(20),
+(This will add in fututure) FOREIGN KEY (bdoSupervise) REFERENCES projectDB(proID));
 
 
 #terigger to set prefix to autoincrementing proID

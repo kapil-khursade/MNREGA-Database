@@ -16,6 +16,10 @@ public class dsahBoard {
 	public static void main(String[] args) {
 		mnPortal();
 	}
+	
+//	Current BDO or GPM to be remember
+	public static String curBDO = null;
+	public static String curGPM = null;
 
 //wlecome mesage and main option  	
     public static void mnPortal() {
@@ -134,7 +138,7 @@ public class dsahBoard {
     			System.out.println("Enter Project Date Of End in YYYY-MM-DD");
     			String doe = sc.next();
     	
-    			PROJECTbean pro = new PROJECTbean(doe, nam, cost, cost, wage, empReq, dos, doe, null);
+    			PROJECTbean pro = new PROJECTbean(null, nam, cost, cost, wage, empReq, dos, doe, null);
     			funBDO.createProject(pro);
     	    break;
     	  case "2":
@@ -156,10 +160,8 @@ public class dsahBoard {
     			String user = sc.next();
     			System.out.println("Enter Password");
     			String pass = sc.next();
-    			System.out.println("Enter Your BDO ID as supreviseer");
-    			String bdoId = sc.next();
     		
-    			GPMbean gpm1 = new GPMbean(null, name, user, pass, bdoId, null);
+    			GPMbean gpm1 = new GPMbean(null, name, user, pass, curBDO, null);
     			funBDO.insertGPM(gpm1);
     			
     	    break;
@@ -174,8 +176,7 @@ public class dsahBoard {
     	    break;
     	  case "5":
     		//Allocating project
-    		  System.out.println("\r\n");
-    		  funBDO.projAandGpm();
+    		  funBDO.projAandGpm(curBDO);
     	    break;
     	  case "6":
     		//Viewing employe and working employee on that project
@@ -186,6 +187,8 @@ public class dsahBoard {
 //    		  Going to main method
     		 rev = false;
     		 mnPortal();
+    		  curGPM=null;
+    		  curBDO=null;
     	    break;
       	  case "0":
 //    		closing app
@@ -266,10 +269,8 @@ public class dsahBoard {
     			System.out.println("\r\n"+"Adding the new employee");
     			System.out.println("Enter the name of employee");
     			String name = sc.next();
-    			System.out.println("Enter Your GPM ID");
-    			String gpm = sc.next();
     			
-    			EMPLOYEEbean emp1 = new EMPLOYEEbean(null, name, null, 0, 0, gpm, null);
+    			EMPLOYEEbean emp1 = new EMPLOYEEbean(null, name, null, 0, 0, curGPM, null);
     			funGpm.createEmployee(emp1);
     			
     	    break;
@@ -288,8 +289,6 @@ public class dsahBoard {
     		//Assign project to employee;	
 //    			list of project available
     		  System.out.println("\r\n");
-    			System.out.println("Enter Your GPM ID");
-    			String curGPM = sc.next();
     			funGpm.aviaProjAndEmp(curGPM);
     	    break;
     	  case "4":
@@ -301,9 +300,12 @@ public class dsahBoard {
 //      		going to main portal
     		  rev = false;
     		  mnPortal();
+    		  curGPM=null;
+    		  curBDO=null;
       	    break;  
     	  case "0":
 //    		Closig the app
+    	   rev = false;
        	   System.out.println("Exited..");
        	   sc.close();
        	   functionsOfGPM.sc.close();

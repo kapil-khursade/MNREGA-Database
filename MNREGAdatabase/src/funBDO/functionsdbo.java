@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import Dashboard.*;
 
 import Beans.*;
 
@@ -12,6 +13,8 @@ import com.masai.util.*;
 public class functionsdbo {
 
 	public static Scanner sc = new Scanner(System.in);
+	
+	
 	
 //inserting the bdo account
 	public static void insertBDO(BDObean bdo1) {
@@ -53,6 +56,8 @@ public class functionsdbo {
 				String bdoName = bdoAcc.getNString("bdoName");
 				System.out.println("\n"+"Log in Sucessfull "+bdoName);
 				System.out.println("Your account ID is "+bdoID);
+//				current bdo name
+				Dashboard.dsahBoard.curBDO= bdoID;
 				flag = true;
 			}else {
 				System.out.println("Invalid Username Or Password");
@@ -119,11 +124,11 @@ public class functionsdbo {
 				int bal = proj.getInt("balanceCost");
 				int wag = proj.getInt("WagePerEmp");
                 int empReq = proj.getInt("employeeRequired");
-                Date dos = proj.getDate("dateOfStart");
-                Date doe = proj.getDate("dateOfEnd");
+                String dos = proj.getString("dateOfStart");
+                String doe = proj.getString("dateOfEnd");
                 String status = proj.getString("status");
 				
-                PROJECTbean pro = new PROJECTbean(proID, name, cost, cost, wag, empReq, proID, name, status);
+                PROJECTbean pro = new PROJECTbean(proID, name, cost, cost, wag, empReq, dos, doe, status);
                 
                 proList.add(pro);
 			}
@@ -196,32 +201,51 @@ public class functionsdbo {
 	}
 	
 //Alloting the project. It will display project ID and name ti choose from.
-	public static void projAandGpm() {
+	public static void projAandGpm(String curBDO) {
 		
 //		Displaying the project available and not finshed
 		try(Connection conn = DButil.getConnection()) {
 			
-			System.out.println("This projects are avialbe to allot who have budget and either work in progress or not started.");
+			System.out.println("\n"+"This projects are avialbe to allot who have budget and either work in progress or not started and Not Alloted.");
 			
-			PreparedStatement proAc = conn.prepareStatement("SELECT proID, proName FROM projectDB WHERE balanceCost>0 AND NOT status='DONE'");
+			PreparedStatement proAc = 
+		 conn.prepareStatement("SELECT proID, proName FROM projectDB WHERE NOT proID = ANY (SELECT proAllot FROM gpmDB WHERE proAllot IS NOT NULL) AND balanceCost>0 AND employeeRequired>0 AND NOT status='done'");
 			ResultSet proj = proAc.executeQuery();
 			System.out.println("ProjID  ProjName");
 			System.out.println("------------------");
+			
+			boolean proFlag = true;
+			
 			while(proj.next()) {
 				System.out.println(proj.getString(1)+"  "+proj.getString(2));
+				proFlag = false;
+			}
+			
+			if(proFlag) {
+				System.out.println("No Project Reamainaig To allot");
 			}
 			
 			System.out.println("\n"+"This are the Gram Panchayat Members whome project Not alloted.");
-			PreparedStatement gpmAc = conn.prepareStatement("SELECT gpmID, gpmName FROM gpmDB WHERE proAllot IS NULL");
+			PreparedStatement gpmAc = conn.prepareStatement("SELECT gpmID, gpmName FROM gpmDB WHERE proAllot IS NULL AND bdoSupervise=?");
+			gpmAc.setString(1, curBDO);
+			
+			boolean flag = true;
+			
 			ResultSet gpm =  gpmAc.executeQuery();
 			System.out.println("gpmID   gpmName");
 			System.out.println("--------------------");
 			
 			while(gpm.next()) {
 				System.out.println(gpm.getString(1)+" "+gpm.getString(2));
+				flag = false;
 			}
 //			alloting the project
+			
+			if(flag) {
+				System.out.println("No Gram Pnachyat Member Under Your Supervsion");
+			}else {
 			allotProToGpm();
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 //			e.printStackTrace();
