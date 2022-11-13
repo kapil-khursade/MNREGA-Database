@@ -122,4 +122,6 @@ Updating the project when new employee is added.
 
 UPDATE projectDB SET balanceCost=(balanceCost-wagePerEmp), employeeRequired=employeeRequired-1 WHERE proID='PRO002';
 
+
+SELECT projectDB.proID, projectDB.proName FROM projectDB CROSS JOIN gpmDB WHERE projectDB.proID=gpmDB.proAllot AND projectDB.balanceCost>0 AND projectDB.employeeRequired>0 AND NOT projectDB.status='done' AND gpmDB.gpmID=
                                  

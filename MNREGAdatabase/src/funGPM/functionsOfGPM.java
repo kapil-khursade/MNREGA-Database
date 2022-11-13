@@ -104,23 +104,33 @@ public class functionsOfGPM {
 	
 //Allotnig the project to employee, the project is not finished, employee required and have balance budget. Also selecting the employee 
 //which is unemployeed now. Updating the employee also. Giving them wage and num of days work.
-	public static void aviaProjAndEmp() {
+	public static void aviaProjAndEmp(String gpmID) {
 		try(Connection conn = DButil.getConnection()) {
 			
-			PreparedStatement proAvl = conn.prepareStatement("SELECT proID, proName FROM projectDB WHERE balanceCost>0 AND employeeRequired>0 AND NOT status='done'");
+			PreparedStatement proAvl = 
+			conn.prepareStatement
+			("SELECT projectDB.proID, projectDB.proName FROM projectDB CROSS JOIN gpmDB WHERE projectDB.proID=gpmDB.proAllot AND projectDB.balanceCost>0 AND projectDB.employeeRequired>0 AND NOT projectDB.status='done' AND gpmDB.gpmID=?");
 			
+			proAvl.setString(1, gpmID);
 			ResultSet proj = proAvl.executeQuery();
+			
+			boolean flag = true;
 			
 			System.out.println("Following are the active or upcoming project which have budget and employees Required");
 			System.out.println("ProjID   ProjectName");
 			System.out.println("-----------------------");
 			while(proj.next()) {
 				System.out.println(proj.getString(1)+"  "+proj.getString(2));
+				flag = false;
+			}
+			if(flag) {
+				System.out.println("No Project Is Alloted To You By BDO");
+			}else {
+				System.out.println("Type The Project ID you want to allot employee");
+				String proID = sc.next();
+				empAvlAndAllotPro(proID, gpmID);
 			}
 			
-			System.out.println("\n"+"Select project ID to Allot the employees");
-			String proCurr = sc.next();
-			empAvlAndAllotPro(proCurr);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -129,7 +139,7 @@ public class functionsOfGPM {
 		}
 	}
 	
-	public static void empAvlAndAllotPro(String proCurr) {
+	public static void empAvlAndAllotPro(String proCurr, String curGPM) {
 		
 		try(Connection conn = DButil.getConnection()) {
 			
@@ -146,7 +156,7 @@ public class functionsOfGPM {
 			
 		   System.out.println("Type the employee ID you want to allot to project "+proCurr);
 		   String empCurr = sc.next();
-		   allotingProject(proCurr, empCurr);
+		   allotingProject(proCurr, empCurr, curGPM);
 		   
 		} catch (SQLException e) {
 			// TODO: handle exception
@@ -158,7 +168,7 @@ public class functionsOfGPM {
 
 
 
-	public static void allotingProject(String proCurr, String empCurr) {
+	public static void allotingProject(String proCurr, String empCurr, String curGPM) {
 		// TODO Auto-generated method stub
 		
 		try(Connection conn = DButil.getConnection()) {
@@ -177,15 +187,16 @@ public class functionsOfGPM {
 			}
 			
 			PreparedStatement allot = 
-			conn.prepareStatement("UPDATE employeeDB SET proWorking=?, status='employeed', wageEarned=?, numOfDaysWork=? WHERE empID=?");
+			conn.prepareStatement("UPDATE employeeDB SET proWorking=?, status='employeed', wageEarned=?, numOfDaysWork=?, gpmSuervise=? WHERE empID=?");
 			
 		    allot.setString(1, proCurr);
 		    allot.setInt(2, wage);
 		    allot.setInt(3, days);
-		    allot.setString(4, empCurr);
+		    allot.setString(4, curGPM);
+		    allot.setString(5, empCurr);
 		    
 		    int outEmp = allot.executeUpdate();
-		    if(outEmp>0)System.out.println("\n"+"Employee "+empCurr+" alloted to project "+proCurr);
+		    if(outEmp>0)System.out.println("\n"+"Employee "+empCurr+" alloted to project "+proCurr+" with gpm supervise "+curGPM);
 		    else System.out.println("Invalid employee or project");
 			
 			PreparedStatement updateProject = 
@@ -197,15 +208,15 @@ public class functionsOfGPM {
 			else System.out.println("Invalide project"+"\n");
 			
 			
-			System.out.println("Type 1 to allot another project and 0 to Exit");
-			int opt = sc.nextInt();
-			if(opt==1) {
-				//Assign project to employee;	
-//				list of project available
-				aviaProjAndEmp();
-			}else if(opt==0) {
-				System.out.println("Done..");
-			}
+//			System.out.println("Type 1 to allot another project and 0 to Exit");
+//			int opt = sc.nextInt();
+//			if(opt==1) {
+//				//Assign project to employee;	
+////				list of project available
+//				aviaProjAndEmp("");
+//			}else if(opt==0) {
+//				System.out.println("Done..");
+//			}
 			
 			
 		} catch (SQLException e) {

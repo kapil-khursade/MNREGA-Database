@@ -103,6 +103,8 @@ public class dsahBoard {
     
     public static void bdofunctiond() {
     	
+    	boolean rev = true;
+    	
     	System.out.println("\r\n"
     			+ "Type 1 to create project\r\n"
     			+ "Type 2 to View the project\r\n"
@@ -182,42 +184,26 @@ public class dsahBoard {
     	    break;
     	  case "99":
 //    		  Going to main method
+    		 rev = false;
     		 mnPortal();
     	    break;
       	  case "0":
 //    		closing app
+      		  rev = false;
       		sc.close();
     		funBDO.sc.close();
     		System.out.println("Exited...");
     	    break;
     	  default:
     		  System.out.println("!!!Invalid selection!!!");
-    		  System.out.println("\r\n"+"Type 1 To Continue, 2 to logout and 0 to Exit");
-    	    	out = sc.next();
-    	    	if(out=="1") {
-    	    		bdofunctiond();
-    	    	}else if(out=="2") {
-    	    		mnPortal();
-    	    	}else {
-    	    		sc.close();
-    	    		funBDO.sc.close();
-    	    		System.out.println("Exited...");
-    	    	}
-    	    	bdofunctiond();
+    		  bdofunctiond(); 
     	}
     	
-    	System.out.println("\r\n"+"Type 1 To Continue, 2 to logout and 0 to Exit");
-    	 out = sc.next();
-    	if(out.equals("1")) {
-    		bdofunctiond();
-    	}else if(out.equals("2")) {
-    		mnPortal();
-    	}else {
-    		sc.close();
-    		funBDO.sc.close();
-    		System.out.println("Exited...");
+//    	Return to main function again
+    	if(rev) {
+    	bdofunctiond();
     	}
-    	
+
     }
     
     
@@ -261,6 +247,8 @@ public class dsahBoard {
 //GPM functions
     public static void gpmFunction() {
     	
+    	boolean rev = true;
+    	
     	System.out.println("\r\n"
     			+"Type 1 to Create Enployee \r\n"
     			+ "Type 2 to View List of Employee\r\n"
@@ -300,7 +288,9 @@ public class dsahBoard {
     		//Assign project to employee;	
 //    			list of project available
     		  System.out.println("\r\n");
-    			funGpm.aviaProjAndEmp();
+    			System.out.println("Enter Your GPM ID");
+    			String curGPM = sc.next();
+    			funGpm.aviaProjAndEmp(curGPM);
     	    break;
     	  case "4":
     		//Viewing the employee list and days of works
@@ -309,6 +299,7 @@ public class dsahBoard {
     	    break;
     	  case "99":
 //      		going to main portal
+    		  rev = false;
     		  mnPortal();
       	    break;  
     	  case "0":
@@ -319,31 +310,13 @@ public class dsahBoard {
     	    break;  
     	  default:
     		  System.out.println("!!!Invalid selection!!!");
-    		  System.out.println("\r\n"+"Type 1 continue, Type 99 To LogOut And Go To Main Portal, Type 0 To Exit The Application");
-    		 out = sc.next();
-           if(out=="1") {
-        	  gpmFunction();
-           }else if(out=="99") {
-        	   mnPortal();
-           }else if(out=="0 ") {
-        	   System.out.println("Exited..");
-        	   sc.close();
-        	   functionsOfGPM.sc.close();
-           }
+    		  gpmFunction();
     	    break;
     	}
-    	
-  	  System.out.println("\r\n"+"Type 1 continue, Type 99 To LogOut And Go To Main Portal, Type 0 To Exit The Application");
-  	out = sc.next();
-      if(out.equals("1")) {
-   	  gpmFunction();
-      }else if(out.equals("99")) {
-   	   mnPortal();
-      }else {
-   	   System.out.println("Exited..");
-   	   sc.close();
-	   functionsOfGPM.sc.close();
-      }
+//    	return to main function
+    	if(rev) {
+    	 gpmFunction();
+    	}
     	
     }
     
