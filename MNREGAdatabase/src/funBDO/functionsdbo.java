@@ -78,7 +78,7 @@ public class functionsdbo {
 		
 		try(Connection conn = DButil.getConnection()) {
 			
-			String qur = "INSERT INTO projectDB(proName, totalCost, balanceCost, WagePerEmp, employeeRequired, dateOfStart, dateOfEnd) VALUES(?, ?, ?, ?, ?, ?, ?)";
+			String qur = "INSERT INTO projectDB(proName, totalCost, balanceCost, WagePerEmp, employeeRequired, dateOfStart, dateOfEnd, bdoSupervise) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 			 
 			PreparedStatement crtPro = conn.prepareStatement(qur);
 			crtPro.setString(1, pro1.getProName());
@@ -88,6 +88,7 @@ public class functionsdbo {
 			crtPro.setInt(5, pro1.getEmployeeRequired());
 			crtPro.setString(6, pro1.getDateOfStrat());
 			crtPro.setString(7, pro1.getDateOfEnd());
+			crtPro.setString(8, pro1.getBdoSupervise());
 			
 		    int out	 = crtPro.executeUpdate();
 		    
@@ -106,15 +107,17 @@ public class functionsdbo {
 	
 	
 //View the list of the project
-	public static List<PROJECTbean> viewProjectList() {
+	public static List<PROJECTbean> viewProjectList(String curBDO) {
 		
 		List<PROJECTbean> proList = new ArrayList<PROJECTbean>();
 		
 		try(Connection conn = DButil.getConnection()) {
 			
-			PreparedStatement viwProLi = conn.prepareStatement("SELECT * FROM projectDB");
+			PreparedStatement viwProLi = conn.prepareStatement("SELECT * FROM projectDB WHERE bdoSUpervise=?");
+			viwProLi.setString(1, curBDO);
 			
 			ResultSet proj = viwProLi.executeQuery();
+			boolean proFlag = true;
 			
 			while(proj.next()) {
 				
@@ -127,11 +130,16 @@ public class functionsdbo {
                 String dos = proj.getString("dateOfStart");
                 String doe = proj.getString("dateOfEnd");
                 String status = proj.getString("status");
+                String bdosup = proj.getString("bdoSupervise");
 				
-                PROJECTbean pro = new PROJECTbean(proID, name, cost, cost, wag, empReq, dos, doe, status);
+                PROJECTbean pro = new PROJECTbean(proID, name, cost, cost, wag, empReq, dos, doe, status, bdosup);
                 
                 proList.add(pro);
+                
+                proFlag = false;
 			}
+			
+			if(proFlag)System.out.println("No Project Is Under Your Supervison. Create A New Project.");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -177,6 +185,8 @@ public class functionsdbo {
 			
 			ResultSet gpm = viwGpm.executeQuery();
 			
+			boolean gpflag = true;
+			
 			while(gpm.next()) {
 				
 				String gpmID = gpm.getString("gpmID");
@@ -189,7 +199,11 @@ public class functionsdbo {
 				GPMbean gpm1 = new GPMbean(gpmID, gpmName, gpmUser, gpmpass, bdo, pro);
 				
 				gpmList.add(gpm1);
+				
+				gpflag = false;
 			}
+			
+			if(gpflag)System.out.println("No Gram Panchayat Member Avialable");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -209,7 +223,9 @@ public class functionsdbo {
 			System.out.println("\n"+"This projects are avialbe to allot who have budget and either work in progress or not started and Not Alloted.");
 			
 			PreparedStatement proAc = 
-		 conn.prepareStatement("SELECT proID, proName FROM projectDB WHERE NOT proID = ANY (SELECT proAllot FROM gpmDB WHERE proAllot IS NOT NULL) AND balanceCost>0 AND employeeRequired>0 AND NOT status='done'");
+		   conn.prepareStatement("SELECT proID, proName FROM projectDB WHERE NOT proID = ANY (SELECT proAllot FROM gpmDB WHERE proAllot IS NOT NULL) AND balanceCost>0 AND employeeRequired>0 AND NOT status='done' AND bdoSupervise=?");
+			proAc.setString(1, curBDO);
+			
 			ResultSet proj = proAc.executeQuery();
 			System.out.println("ProjID  ProjName");
 			System.out.println("------------------");

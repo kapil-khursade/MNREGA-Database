@@ -138,13 +138,13 @@ public class dsahBoard {
     			System.out.println("Enter Project Date Of End in YYYY-MM-DD");
     			String doe = sc.next();
     	
-    			PROJECTbean pro = new PROJECTbean(null, nam, cost, cost, wage, empReq, dos, doe, null);
+    			PROJECTbean pro = new PROJECTbean(null, nam, cost, cost, wage, empReq, dos, doe, null, curBDO);
     			funBDO.createProject(pro);
     	    break;
     	  case "2":
     		//Viewing project list
     		  System.out.println("\r\n"+"The Project List"+"\r\n"+"--------------------------------------------");
-    		  List<PROJECTbean> poj = funBDO.viewProjectList();
+    		  List<PROJECTbean> poj = funBDO.viewProjectList(curBDO);
     		  
     		  for (PROJECTbean projecTbean : poj) {
 				System.out.println(projecTbean);
@@ -293,7 +293,7 @@ public class dsahBoard {
     	    break;
     	  case "4":
     		//Viewing the employee list and days of works
-    		  System.out.println("\r\n");
+    		  System.out.println("\r\n"+"The List Of Gram Panchyat Mebers"+"/r/n"+"-----------------------------------");
     			funGpm.showproOption();
     	    break;
     	  case "99":

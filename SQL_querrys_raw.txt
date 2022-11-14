@@ -35,8 +35,8 @@ CREATE TABLE projectDB (proID VARCHAR(7) NOT NULL PRIMARY KEY DEFAULT '0',
                         dateOfStart date,
                         dateOfEnd date,
                         status ENUM('not_start', 'WIP', 'done') DEFAULT 'not_start',
-                        bdoSupervise VARCHAR(20),
-(This will add in fututure) FOREIGN KEY (bdoSupervise) REFERENCES projectDB(proID));
+                        bdoSupervise VARCHAR(7),
+                        FOREIGN KEY (bdoSupervise) REFERENCES bdoDB(bdoID));
 
 
 #terigger to set prefix to autoincrementing proID
@@ -126,4 +126,18 @@ UPDATE projectDB SET balanceCost=(balanceCost-wagePerEmp), employeeRequired=empl
 
 
 SELECT projectDB.proID, projectDB.proName FROM projectDB CROSS JOIN gpmDB WHERE projectDB.proID=gpmDB.proAllot AND projectDB.balanceCost>0 AND projectDB.employeeRequired>0 AND NOT projectDB.status='done' AND gpmDB.gpmID=
-                                 
+
+
+SELECT proID, proName FROM projectDB WHERE NOT proID = ANY (SELECT proAllot FROM gpmDB WHERE proAllot IS NOT NULL) AND balanceCost>0 AND employeeRequired>0 AND NOT status='done';                              
+
+
+
+
+
+
+
+
+
+
+
+

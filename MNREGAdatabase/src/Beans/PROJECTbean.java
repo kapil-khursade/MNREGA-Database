@@ -13,9 +13,10 @@ public class PROJECTbean {
 	String dateOfStrat;
 	String dateOfEnd;
 	String status;
+	String bdoSupervise;
 	
 	public PROJECTbean(String proID, String proName, int totalCost, int balanceCost, int wagePerEmp,
-			int employeeRequired, String dateOfStrat, String dateOfEnd, String status) {
+			int employeeRequired, String dateOfStrat, String dateOfEnd, String status, String bdoSupervise) {
 		super();
 		this.proID = proID;
 		this.proName = proName;
@@ -26,6 +27,7 @@ public class PROJECTbean {
 		this.dateOfStrat = dateOfStrat;
 		this.dateOfEnd = dateOfEnd;
 		this.status = status;
+		this.bdoSupervise = bdoSupervise;
 	}
 
 	public String getProID() {
@@ -100,6 +102,14 @@ public class PROJECTbean {
 		this.status = status;
 	}
 
+	public String getBdoSupervise() {
+		return bdoSupervise;
+	}
+
+	public void setBdoSupervise(String bdoSupervise) {
+		this.bdoSupervise = bdoSupervise;
+	}
+
 	@Override
 	public String toString() {
 		return "proID: " + proID + "\n" +
@@ -111,6 +121,7 @@ public class PROJECTbean {
 				"dateOfStrat: " + dateOfStrat + "\n" + 
 				"dateOfEnd: " + dateOfEnd + "\n" + 
 				"status: " + status + "\n" + 
+				"bdoSupervise: "+bdoSupervise+ "\n" +
 				"-------------------------------------------";
 	}
 	
