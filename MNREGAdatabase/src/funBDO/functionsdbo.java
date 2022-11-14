@@ -118,6 +118,7 @@ public class functionsdbo {
 			
 			ResultSet proj = viwProLi.executeQuery();
 			boolean proFlag = true;
+			int countOfPro = 0;
 			
 			while(proj.next()) {
 				
@@ -137,9 +138,11 @@ public class functionsdbo {
                 proList.add(pro);
                 
                 proFlag = false;
+                countOfPro++;
 			}
 			
 			if(proFlag)System.out.println("No Project Is Under Your Supervison. Create A New Project.");
+			else System.out.println("Total Numbers OF Projects: "+countOfPro+"\r\n------------------------------------------");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -187,6 +190,8 @@ public class functionsdbo {
 			
 			boolean gpflag = true;
 			
+			int gpmCount = 0;
+			
 			while(gpm.next()) {
 				
 				String gpmID = gpm.getString("gpmID");
@@ -201,9 +206,12 @@ public class functionsdbo {
 				gpmList.add(gpm1);
 				
 				gpflag = false;
+				
+				gpmCount++;
 			}
 			
 			if(gpflag)System.out.println("No Gram Panchayat Member Avialable");
+			else System.out.println("Total Numbre Of Gram Panchayat Members: "+gpmCount+"\r\n----------------------------------------------");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -79,6 +79,10 @@ public class functionsOfGPM {
 			
 			ResultSet empList = viewEmp.executeQuery();
 			
+			boolean flagEmp = true;
+			
+			int countEmp = 0;
+			
 			while(empList.next()) {
 				
 				String empID = empList.getNString("empID");
@@ -92,7 +96,13 @@ public class functionsOfGPM {
                 
 				EMPLOYEEbean emp = new EMPLOYEEbean(empID, empName, status, wage, day, gpmSup, proj);
 				employeeList.add(emp);
+				
+				flagEmp=false;
+				countEmp++;
 			}
+			
+			if(flagEmp)System.out.println("There are No employess To show.");
+			else System.out.println("Total Number Of Eployess: "+countEmp+"\r\n"+"--------------------------------------------");
 			
 			
 		} catch (SQLException e) {
@@ -152,13 +162,21 @@ public class functionsOfGPM {
 		   System.out.println("\n"+"This are the unemployeed members");
 		   System.out.println("empID   empName");
 		   System.out.println("------------------");
+		   
+		   boolean flagEemp = true;
+		   
 		   while(emp.next()) {
 			   System.out.println(emp.getString(1)+"  "+emp.getString(2));
+			   flagEemp = false;
 		   }
 			
+		   if(flagEemp) {
+			   System.out.println("No Unemployeed Employee Avaialable.");
+		   }else {
 		   System.out.println("Type the employee ID you want to allot to project "+proCurr);
 		   String empCurr = sc.next();
 		   allotingProject(proCurr, empCurr, curGPM);
+		   }
 		   
 		} catch (SQLException e) {
 			// TODO: handle exception
@@ -229,14 +247,23 @@ try(Connection conn = DButil.getConnection()) {
 			PreparedStatement proAc = conn.prepareStatement("SELECT proID, proName FROM projectDB");
 			ResultSet proj = proAc.executeQuery();
 			System.out.println("ProjID  ProjName");
-			System.out.println("------------------");
+			System.out.println("------------------");	
+			
+			boolean proFlag = true;
+			
 			while(proj.next()) {
 				System.out.println(proj.getString(1)+"  "+proj.getString(2));
+				proFlag = false;
 			}
-
-			System.out.println("\n"+"Enter the Project Id");
-			String proCurr = sc.next();
-			listOfempProSal(proCurr);
+			
+			if(proFlag) {
+				System.out.println("No Project Is Avialable.");
+			}else {
+				System.out.println("\n"+"Enter the Project Id");
+				String proCurr = sc.next();
+				listOfempProSal(proCurr);
+			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 //			e.printStackTrace();
@@ -255,9 +282,15 @@ try(Connection conn = DButil.getConnection()) {
 			System.out.println("Following are the employee working on project id "+proCurr+"\n");
 			System.out.println("EmpID  empName   NumberOfDayWorked");
 			System.out.println("-----------------------------");
+			
+			boolean empFlag = true;
+			
 			while(proj.next()) {
 				System.out.println(proj.getString(1)+"  "+proj.getString(2)+"  "+proj.getString(3));
+				empFlag = false;
 			}
+			
+			if(empFlag)System.out.println("No Employee Is Avialable To Show");
 			
 			
 		} catch (SQLException e) {

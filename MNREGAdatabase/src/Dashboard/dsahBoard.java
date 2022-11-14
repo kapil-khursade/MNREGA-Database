@@ -24,7 +24,7 @@ public class dsahBoard {
 //wlecome mesage and main option  	
     public static void mnPortal() {
   	
-    	System.out.println("Welcome to MNREGA protal\r\n"
+    	System.out.println("***Welcome to MNREGA protal***\r\n"
     			+ "----------------------------------------\r\n"
     			+ "Type 1 to acess as BLOCK DEVELOPMENT OFFICER\r\n"
     			+ "Type 2 to acess as GRAM PANCAYAT MEMBER\r\n"
@@ -51,7 +51,7 @@ public class dsahBoard {
     public static void bdoPotal() {
     	
     	System.out.println("\r\n"
-    			+ "Welcome TO BLOCK DEVELOPMENT OFFICERS Portal\r\n"
+    			+ "***Welcome TO BLOCK DEVELOPMENT OFFICERS Portal***\r\n"
     			+ "\r\n"
     			+ "Type 1 To Login\r\n"
     			+ "Type 2 To Create BDO account\r\n"
@@ -167,7 +167,7 @@ public class dsahBoard {
     	    break;
     	  case "4":
     		//viewing list of gpm
-    			System.out.println("\r\n");
+    			System.out.println("\r\n"+"The Gram Panchayat Member List"+"\r\n"+"----------------------------------------");
     			List<GPMbean> gpmList = funBDO.viewGPMList();
     			
     			for (GPMbean gpMbean : gpmList) {
@@ -215,7 +215,7 @@ public class dsahBoard {
 //GPM portal
     public static void gpmPortal() {
     	
-    	System.out.println("Welcome To Gram Panchayat Member Portal\r\n"
+    	System.out.println("***Welcome To Gram Panchayat Member Portal***\r\n"
     			+ "\r\n"
     			+ "Type 1 To Login"
     			+ "\r\n"
@@ -276,7 +276,7 @@ public class dsahBoard {
     	    break;
     	  case "2":
     		//View the list of employee
-    			System.out.println("\r\n"+"Employees List----------------");
+    			System.out.println("\r\n"+"Employees List"+"\r\n"+"---------------------------");
     			List<EMPLOYEEbean> empList =funGpm.viewEmployeeList();
     			System.out.println("The List of The Eployees");
     			
