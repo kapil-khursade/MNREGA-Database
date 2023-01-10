@@ -20,17 +20,17 @@ The Database Schema/ Entity Relation Diagram:
 This app can be accessed by Block Development Officer and Gram Panchayat Member
 
 ###BDO functionalites.
-..*Create BDO Account
-..*Login into BDO application
-..*Create Gram Pancayat Memeber Account
-..*Create Project
-..*Assign Project To GPM
-..*View All Project
-..*View All GPM 
+..* Create BDO Account
+..* Login into BDO application
+..* Create Gram Pancayat Memeber Account
+..* Create Project
+..* Assign Project To GPM
+..* View All Project
+..* View All GPM 
 
 ###GPM functionalities
-..*Login into GPM account
-..*Create Employees Detail
-..*Assign Employees To Project
-..*View All Employees
-..*View Employee Name And Salary
+..* Login into GPM account
+..* Create Employees Detail
+..* Assign Employees To Project
+..* View All Employees
+..* View Employee Name And Salary
